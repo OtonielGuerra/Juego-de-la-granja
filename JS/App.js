@@ -17,6 +17,7 @@ const DIMENSION = 80;
 var x = random(0,5) * DIMENSION;
 var y = random(0,5) * DIMENSION;
 
+<<<<<<< HEAD
 //Vaca y Cerdo sano
 var vacaSana = 1;
 var cerdoSano = 1;
@@ -24,6 +25,8 @@ var cerdoSano = 1;
 //Vidas
 var vidas = 3;
 
+=======
+>>>>>>> 803d6af825b5a73b3435277850b04c527ccaa320
 //Declarando todas las imagenes y el fondo
 var vaca = {
     url: './imagenes/vaca.png',
@@ -49,10 +52,13 @@ var cuchillo = {
     cargaOK: false
 };
 
+<<<<<<< HEAD
 var malo = {
 
 }
 
+=======
+>>>>>>> 803d6af825b5a73b3435277850b04c527ccaa320
 //Codigo que dice que las imagenes son de tipo Image
 fondo.imagen = new Image();
 vaca.imagen = new Image();
@@ -100,6 +106,7 @@ function dibujar(){
     dibujarMatriz();
     if(cuchillo.cargaOK == true){
         lapiz.drawImage(cuchillo.imagen,x,y);
+<<<<<<< HEAD
     }
 };
 
@@ -242,4 +249,111 @@ function dibujarMatriz(){
         }
     }
 }
+=======
+    }
+};
 
+//Codigo de programacion para las flechas y mover el cuchillo
+var tecla = {
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+    ENTER: 13
+};
+
+function movimiento(evento){
+    switch(evento.keyCode){
+
+        case tecla.LEFT:
+            if(x > 0){
+                x = x - DIMENSION;
+                dibujar();
+            }
+            break;
+
+        case tecla.UP:
+            if(y > 0){
+                y = y - DIMENSION;
+                dibujar();    
+            }
+            break;
+
+        case tecla.RIGHT:
+            if(x < 400){
+                x = x + DIMENSION;
+                dibujar();
+            }
+            break;
+
+        case tecla.DOWN:
+            if(y < 400){
+                y = y + DIMENSION;
+                dibujar();    
+            }
+            break;
+
+        case tecla.ENTER:
+            if((matriz[x/DIMENSION][y/DIMENSION]) == 'v'){
+                alert("Vaca");
+            }
+            if((matriz[x/DIMENSION][y/DIMENSION]) == 'c'){
+                alert("Cerdo")
+            }
+            break;
+        }
+};
+
+//Funcion que retorna un valor aleatorio
+function random(minimo,maximo){
+    return Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+};
+
+//Funciones para crear la matriz y que todas sean "x"
+function iniciarMatriz(){ 
+    for(var i = 0; i < matriz.length; i++){
+        matriz[i] = new Array(6);
+        for(var j = 0; j < matriz.length; j++){
+            matriz[i][j] = 'x';
+        }
+    }
+};
+
+//Codigo para cambiar x por c en la matriz
+function inicializarCerdos(){
+    var numero = random(1,10);
+    for(var i = 1; i <= numero; i++){
+        var fila = random(0,5);
+        var columna = random(0,5);
+        if(matriz[fila][columna] == 'x'){
+            matriz[fila][columna] = 'c';
+        }
+    }
+};
+
+//Codigo para cambiar x por v en la matriz
+function inicializarVacas(){
+    var numero = random(1,10);
+    for(var i = 1; i <= numero; i++){
+        var fila = random(0,5);
+        var columna = random(0,5);
+        if(matriz[fila][columna] == 'x'){
+            matriz[fila][columna] = 'v';
+        }
+    }
+};
+>>>>>>> 803d6af825b5a73b3435277850b04c527ccaa320
+
+//Codigo para dibujar vacas o cerdos segun la posicion de las "C" o "V"
+function dibujarMatriz(){
+    for (var i = 0; i < matriz.length; i++) {
+        for (var j = 0; j < matriz.length; j++) {
+            if (matriz[i][j] == 'v'){
+                lapiz.drawImage(vaca.imagen, i * DIMENSION, j * DIMENSION);
+            }
+            if (matriz[i][j] == 'c'){
+                lapiz.drawImage(cerdo.imagen, i * DIMENSION, j * DIMENSION);
+            }
+        }
+    }
+};
